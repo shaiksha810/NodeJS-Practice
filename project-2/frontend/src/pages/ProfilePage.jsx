@@ -1,0 +1,33 @@
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import useApi from '../api/api'
+
+const ProfilePage = () => {
+
+
+  const { user } = useSelector(store => store.user)
+  const api = useApi()
+
+
+ async function fetchProfile() {
+  const response = await api.get("/auth/me")
+  console.log(response);
+  
+ }
+
+
+  useEffect(() => {
+    fetchProfile()
+  }, [])
+
+  return (
+
+    <div>
+      <h1>Profile</h1>
+      <h3>Name:{user?.name}</h3>
+      <h3>Email:{user?.email}</h3>
+    </div>
+  )
+}
+
+export default ProfilePage

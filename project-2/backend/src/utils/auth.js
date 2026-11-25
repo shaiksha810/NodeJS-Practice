@@ -16,16 +16,12 @@ const generateTokens = (userId) => {
 const verifyAccessToken = (token) => {
 
     const decode = jwt.verify(token, config.ACCESS_TOKEN)
-    console.log(decode)
-
     return decode
 }
 
 const verifyRefreshToken = (token) => {
 
     const decode = jwt.verify(token, config.REFRESH_TOKEN)
-    // console.log(decode)
-
     return decode
 }
 

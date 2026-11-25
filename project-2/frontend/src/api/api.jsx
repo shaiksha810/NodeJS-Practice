@@ -34,12 +34,13 @@ const useApi = () => {
 
             if (error.response?.status === 401){
                 const res = await axios.post("/api/auth/refresh", {}, { withCredentials: true })
-                console.log(res)
+                // console.log("api res", res)
+
                 dispatch(setAccessToken(res.data.accessToken))
-                
+
                 error.config.headers.Authorization = `Bearer ${res.data.accessToken}`
 
-                console.log(error.config)
+                console.log("error config", error.config)
                 return axios(error.config)
             }
             return Promise.reject(error)

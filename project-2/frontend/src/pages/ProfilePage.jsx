@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import useApi from '../api/api'
+import { addUser } from '../features/authSlice'
 
 const ProfilePage = () => {
 
 
   const { user } = useSelector(store => store.user)
   const api = useApi()
+  const dispatch = useDispatch()
 
 
  async function fetchProfile() {
   const response = await api.get("/auth/me")
-  console.log(response);
+
+  // console.log(response);
+
+  dispatch(addUser(response.data))
+  
   
  }
 
